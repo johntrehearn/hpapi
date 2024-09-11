@@ -49,7 +49,7 @@ const potterCards = (searchString) => {
             <img src="${data.img}" alt="${data.name}"/>
            </div>
             <div>
-        <p class="description"> Name: ${data.name ? toSentenceCase(data.name) : 'None'} </p>
+        <p class="description"> Name: ${data.name ? data.name.toUpperCase() : 'None'} </p>
         <p class="description"> Ancestry: ${data.anscestry ? toSentenceCase(data.anscestry) : 'None'} </p>
         <p class="description"> House: ${data.house ? toSentenceCase(data.house) : 'None'} </p>
         <p class="description"> Wand: ${data.wand.wood ? toSentenceCase(data.wand.wood) : 'None'} ${data.wand.core ? toSentenceCase(data.wand.core) : ''} ${data.wand.length ? data.wand.length + ' inches' : ''} </p>
@@ -60,5 +60,11 @@ const potterCards = (searchString) => {
     .join('');
     potterDisplay.innerHTML = cards;
 };
+
+searchBar.addEventListener('keyup', (e) => {
+    const searchString = e.target.value.toLowerCase();
+    console.log(searchString);
+    potterCards(searchString);
+});
 
 fetchData();
